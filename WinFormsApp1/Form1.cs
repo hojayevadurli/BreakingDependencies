@@ -9,36 +9,28 @@ namespace WinFormsApp1
 
     }
 
-    public partial class Form2 : IForm
+    public class Form2 : IForm
     {
         public void DisplayMessage(string message)
         {
-            MessageBox.Show(message);
+           MessageBox.Show(message);
         }
     }
 
 
     public partial class Form1 : Form
     {
-
         IForm dependency;
-
         public string errorMessage { get; set; }
         public Form1()
         {
             InitializeComponent();
         }
 
-        public Form1(IForm form, string message)
+        public Form1(IForm form,string message)
         {
-            InitializeComponent();
-            //this.errorMessage = message;
             this.dependency = form;
-
-            form.DisplayMessage(message);
-            //dependency.DisplayMessage(message);
-
-
+            InitializeComponent();
 
         }
 
@@ -46,13 +38,13 @@ namespace WinFormsApp1
         {
             if (txtName.Text.Length == 0)
             {
-                MessageBox.Show("You have to enter a name");
+                dependency.DisplayMessage("You have to enter a name");
                 return;
             }
 
             if (numBalance.Value < 10_000 || numBalance.Value > 1_000_000)
             {
-                MessageBox.Show("Must be between 10k and 1MM");
+                dependency.DisplayMessage("Must be between 10k and 1MM");
                 return;
             }
 

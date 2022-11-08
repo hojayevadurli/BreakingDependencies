@@ -29,20 +29,23 @@ namespace TestProject1
         public void CountButtonClick()
         {
             var formDependency = new TestFormDependency();
-            var form1 = new Form1();
+            var form1 = new Form1(formDependency, null);
             form1.btnCalculate_Click(null, null);
             Assert.That(() => formDependency.Message == "You have to enter a name");
 
         }
 
-        //[Test]
-        //public void NumBalanceError()
-        //{
-        //    var form1 = new Form1();
-        //    var form2=new Form2();
-        //    form1.btnCalculate_Click(null, null);
-        //    Assert.That(() => form1.Message == "Must be between 10k and 1MM");
-        //}
+        [Test]
+        public void NumBalanceError()
+        {
+            var form2 = new Form2();
+            var formDependency = new TestFormDependency();
+            string errorMessage = "You have to enter a name";
+            var form1 = new Form1(formDependency,errorMessage);
+            
+            form1.btnCalculate_Click(null, null);
+            Assert.That(() => formDependency.Message == "Must be between 10k and 1MM");
+        }
     }
 }
 
