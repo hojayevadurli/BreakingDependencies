@@ -29,7 +29,7 @@ namespace TestProject1
         public void CountButtonClick()
         {
             var formDependency = new TestFormDependency();
-            var form1 = new Form1(formDependency, null);
+            var form1 = new Form1(formDependency);
             form1.btnCalculate_Click(null, null);
             Assert.That(() => formDependency.Message == "You have to enter a name");
 
@@ -40,9 +40,9 @@ namespace TestProject1
         {
             var form2 = new Form2();
             var formDependency = new TestFormDependency();
-            string errorMessage = "You have to enter a name";
+            string errorMessage = "Must be between 10k and 1MM";
+           
             var form1 = new Form1(formDependency,errorMessage);
-            
             form1.btnCalculate_Click(null, null);
             Assert.That(() => formDependency.Message == "Must be between 10k and 1MM");
         }

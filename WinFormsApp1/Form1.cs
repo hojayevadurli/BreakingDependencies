@@ -27,10 +27,18 @@ namespace WinFormsApp1
             InitializeComponent();
         }
 
-        public Form1(IForm form,string message)
+        public Form1(IForm form)
         {
             this.dependency = form;
             InitializeComponent();
+
+        }
+
+        public Form1(IForm form, string message)
+        {
+            this.dependency = form;
+            InitializeComponent();
+            txtName.Text = message;
 
         }
 
@@ -38,6 +46,7 @@ namespace WinFormsApp1
         {
             if (txtName.Text.Length == 0)
             {
+
                 dependency.DisplayMessage("You have to enter a name");
                 return;
             }
